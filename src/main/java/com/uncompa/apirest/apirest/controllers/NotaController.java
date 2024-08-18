@@ -18,7 +18,6 @@ public class NotaController {
     private NotaService notaService;
 
     // Crear una nueva nota
-    @CrossOrigin(origins = "http://localhost:4321")
     @PostMapping
     public Nota crearNota(@RequestBody Nota nota) {
         return notaService.crearNota(nota);
