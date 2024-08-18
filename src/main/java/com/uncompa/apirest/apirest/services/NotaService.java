@@ -50,7 +50,7 @@ public class NotaService {
         notaRepository.deleteById(id);
     }
 
-    public List<Nota> obtenerNotasPorUsuario(String username) {
-        return notaRepository.buscarPorUsername(username);
+    public List<Nota> getNotasByUsername(String username) {
+        return notaRepository.findByUsername(username);
     }
 }

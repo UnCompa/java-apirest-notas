@@ -61,7 +61,7 @@ public class NotaController {
 
     @GetMapping("/usuario/{username}")
     public ResponseEntity<List<Nota>> obtenerNotasDeUsuario(@PathVariable String username) {
-        List<Nota> notas = notaService.obtenerNotasPorUsuario(username);
+        List<Nota> notas = notaService.getNotasByUsername(username);
         return ResponseEntity.ok(notas);
     }
 }
