@@ -34,7 +34,7 @@ public class NotaController {
     public ResponseEntity<Nota> obtenerNotaPorId(@PathVariable Long id) {
         Optional<Nota> nota = notaService.obtenerNotaPorId(id);
         return nota.map(ResponseEntity::ok)
-                   .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // Actualizar una nota existente
@@ -57,5 +57,11 @@ public class NotaController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/usuario/{username}")
+    public ResponseEntity<List<Nota>> obtenerNotasDeUsuario(@PathVariable String username) {
+        List<Nota> notas = notaService.obtenerNotasPorUsuario(username);
+        return ResponseEntity.ok(notas);
     }
 }

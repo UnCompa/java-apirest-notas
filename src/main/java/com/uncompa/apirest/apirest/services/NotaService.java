@@ -33,20 +33,24 @@ public class NotaService {
     // Actualizar una nota existente
     public Nota actualizarNota(Long id, Nota nuevaNota) {
         return notaRepository.findById(id)
-            .map(nota -> {
-                nota.setFecha(nuevaNota.getFecha());
-                nota.setTitulo(nuevaNota.getTitulo());
-                nota.setContenido(nuevaNota.getContenido());
-                nota.setUsername(nuevaNota.getUsername());
-                return notaRepository.save(nota);
-            }).orElseGet(() -> {
-                nuevaNota.setId(id);
-                return notaRepository.save(nuevaNota);
-            });
+                .map(nota -> {
+                    nota.setFecha(nuevaNota.getFecha());
+                    nota.setTitulo(nuevaNota.getTitulo());
+                    nota.setContenido(nuevaNota.getContenido());
+                    nota.setUsername(nuevaNota.getUsername());
+                    return notaRepository.save(nota);
+                }).orElseGet(() -> {
+                    nuevaNota.setId(id);
+                    return notaRepository.save(nuevaNota);
+                });
     }
 
     // Eliminar una nota por ID
     public void eliminarNota(Long id) {
         notaRepository.deleteById(id);
+    }
+
+    public List<Nota> obtenerNotasPorUsuario(String username) {
+        return notaRepository.buscarPorUsername(username);
     }
 }
